@@ -1,68 +1,102 @@
-# Airbnb (Node.js + Express)
+# Airbnb
 
-A simple Airbnb-like backend API built with Node.js, Express, and MySQL.
-
-## Features
-
-- User registration, login, and profile management
-- Property listing and booking
-- Category management with image upload
-- RESTful API endpoints
-- Image storage and retrieval
+This project is a full-stack Airbnb clone with a React.js frontend and a Node.js/Express backend.
 
 ## Project Structure
 
 ```
-.
-├── Airbnb.postman_collection.json   # Postman API collection
-├── config.js                       # JWT secret config
-├── db.js                           # MySQL database connection
-├── package.json                    # Project dependencies
-├── server.js                       # Main Express server
-├── utils.js                        # Utility functions
-├── images/                         # Uploaded images
-├── resources/                      # Sample images
-└── routes/
-    ├── booking.js                  # Booking routes
-    ├── category.js                 # Category routes
-    ├── property.js                 # Property routes
-    └── user.js                     # User routes
+Airbnb/
+  ├── README.md
+  ├── Airbnb/                # Frontend (React.js)
+  │   ├── src/               # React source code
+  │   ├── public/
+  │   ├── routes/
+  │   ├── utils.js
+  │   ├── config.js
+  │   ├── db.js
+  │   ├── server.js          # Express backend (legacy, see below)
+  │   ├── package.json
+  │   └── ...other files
+  ├── server/                # Backend (Node.js/Express)
+  │   ├── db.sql
+  │   ├── mailer.js
+  │   ├── server.js
+  │   ├── db/
+  │   ├── images/
+  │   ├── routes/
+  │   ├── utils/
+  │   ├── package.json
+  │   └── ...other files
 ```
 
-## Setup
+## Prerequisites
 
-1. **Install dependencies**
+- Node.js (v18+ recommended)
+- npm
+
+## Setup Instructions
+
+### 1. Backend (server/)
+
+1. Install dependencies:
    ```sh
+   cd server
    npm install
    ```
 
-2. **Configure MySQL**
-   - Update your database credentials in [`db.js`](db.js).
+2. Configure your database in `db.sql` and update connection settings in `db/`.
 
-3. **Run the server**
+3. Start the backend server:
    ```sh
-   node server.js
+   npm start
    ```
-   
-## API Usage
+   The backend runs on [http://localhost:4000](http://localhost:4000).
 
-- Import [`Airbnb.postman_collection.json`](Airbnb.postman_collection.json) into Postman for ready-to-use API requests.
-- Endpoints include `/users/registration`, `/user/login`, `/property`, `/booking`, `/category`, etc.
+### 2. Frontend (Airbnb/Airbnb/)
 
-## Image Handling
+1. Install dependencies:
+   ```sh
+   cd Airbnb/Airbnb
+   npm install
+   ```
 
-- Uploaded images are stored in the [`images/`](images/) folder.
-- Sample images are available in [`resources/`](resources/).
+2. Start the frontend development server:
+   ```sh
+   npm run dev
+   ```
+   The frontend runs on [http://localhost:5173](http://localhost:5173) (default Vite port).
 
-## Dependencies
+3. Update `config.js` if needed to point to your backend server URL.
 
-See [`package.json`](package.json) for all dependencies:
-- express
-- mysql2
-- multer
-- jsonwebtoken
-- cors
-- crypto-js
-- nodemon (dev)
+## Features
 
-**Note:** Make sure your MySQL server is running and accessible. Adjust environment variables and credentials as needed.
+- User authentication (register, login)
+- Property listing, details, and booking
+- Wishlist management
+- Profile management
+- Responsive UI with React and Bootstrap
+- RESTful API backend with Express
+
+## Folder Details
+
+- **Airbnb/Airbnb/src/**: React components, pages, services, and context.
+- **Airbnb/Airbnb/routes/**: Express route handlers (legacy, see server/ for main backend).
+- **server/routes/**: Main backend API routes (user, property, booking, etc.).
+- **server/db/**: Database connection and queries.
+- **server/images/**: Static images served by backend.
+
+## Useful Scripts
+
+- **Frontend**
+  - `npm run dev` – Start development server
+  - `npm run build` – Build for production
+  - `npm run lint` – Lint code
+
+- **Backend**
+  - `npm start` – Start backend server
+
+## Notes
+
+- Ensure both frontend and backend servers are running for full functionality.
+- API endpoints are documented in `Airbnb.postman_collection.json`.
+
